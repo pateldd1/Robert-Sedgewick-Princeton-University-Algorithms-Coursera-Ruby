@@ -1,6 +1,13 @@
+<!-- <<<<<<< HEAD
 ## Princeton-University-Algorithms-Course-in-Ruby
 
 This is the Princeton University Algorithms Course on Coursera by Robert Sedgewick I took with everything written in Ruby(very few Ruby cheat methods used), not Java, with bare to none Ruby methods used.
+=======
+# Princeton-University-Algorithms-Course-in-Ruby
+
+This is the Princeton University Algorithms Course on Coursera by Robert Sedgewick I took with everything written in Ruby(very few Ruby cheat methods used), not Java,
+with bare to none Ruby methods used.
+>>>>>>> ce0f26d82124c5b2c9c484e1c09788759061e1a3
 
 Answers to all the interview questions on the Coursera website for this course are also included in the corresponding directory, based
 on the data structure that was used.
@@ -39,4 +46,4 @@ Includes:
       -query rectangle
    -Binary Search
      -Iterative
-     -Recursive
+     -Recursive -->
