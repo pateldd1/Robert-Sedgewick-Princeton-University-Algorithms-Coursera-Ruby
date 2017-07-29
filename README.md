@@ -1,10 +1,6 @@
 <<<<<<< HEAD
 # Princeton-University-Algorithms-Course-in-Ruby
 
-This is the Princeton University Algorithms Course on Coursera by Robert Sedgewick I took with everything written in Ruby(very few Ruby cheat methods used), not Java, with bare to none Ruby methods used.
-=======
-### Princeton-University-Algorithms-Course-in-Ruby
-
 This is the Princeton University Algorithms Course on Coursera by Robert Sedgewick I took with everything written in Ruby(very few Ruby cheat methods used), not Java,
 with bare to none Ruby methods used.
 
