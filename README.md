@@ -11,17 +11,22 @@ on the data structure that was used.
   * Binary Search Trees
     * Balanced/Unbalanced
     * Left-Leaning Red/Black BST implementation
+
   * Binary Heap
     * Priority Queue
     * Heapsort
+
   * Find Union
     * Percolation
     * Social network connection
+
   * Hash Table implementation
     * Linked List Hashing
     * Linear Probing
+
   * Memoization
     * Fibonacci Recursion example
+
   * Sorting
     * Insertion Sort
     * Shell Sort
@@ -30,15 +35,18 @@ on the data structure that was used.
      * 3way quicksort
     * Merge Sort recursive
      * bottom up as well
+
    * Stack and Queue implementations
      * Linked List
      * Dynamic Array
      * DECK
+
    * Geometric Trees
      * Interval Search
      * KD trees
       * nearest neighbor search
       * query rectangle
+      
    * Binary Search
      * Iterative
      * Recursive
