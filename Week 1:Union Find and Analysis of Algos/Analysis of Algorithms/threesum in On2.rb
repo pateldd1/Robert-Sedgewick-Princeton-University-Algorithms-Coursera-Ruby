@@ -9,12 +9,17 @@
 #If too large, move right pole back. If too small, move start forward. If start
 #and right pole values are equal, move left pole forward and reset the right pole
 #and start pointers
+# If they are both the same at start and right pole that means everything in between them are
+# the same values which means there is no point in continuing with the same pattern
+# When right pole equals start, there is no point in going further because all possibilities have
+# been considered
 #Keep going until start = right_pole, at which time, changing any of the pointers/
 #moving left pole to the right would only increase the final value, so we're done.
 #This can be done worse by O(n^2logn) time by adding a combination of 2 numbers and
 #doing a binary search through the array for -(num1+num2) so all of them sum to 0
 
 def threesum(array,real_value)
+  array.sort!
   start = 1
   left_pole = 0
   right_pole = array.size - 1

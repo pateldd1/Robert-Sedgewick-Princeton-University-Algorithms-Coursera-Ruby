@@ -3,23 +3,21 @@
 #the next part has to do less work
 #at some point h will become 1 and this will be insertion sort but it will be about linear
 #because there will be much fewer inversions after the shellsort part is completed.
-#insertion sort can have linear time if there are very few insertions.
+#insertion sort can have linear time if there are very few inversions.
 def shellsort(arr)
   h = 0
   h = 3*h + 1 until 3*h + 1 > arr.size
   increment = h
- until h == 0 
+ until h == 0
   h.upto(arr.size-1) do |inx|
    until inx - h < 0
     if arr[inx] < arr[inx-h]
-     arr[inx],arr[inx-h]=arr[inx-
-     h],arr[inx]
-     inx -= 1
+     arr[inx],arr[inx-h]=arr[inx-h],arr[inx]
+     inx -= h
     else
      break
     end
    end
-   h = increment
   end
   increment /= 3
   h = increment
@@ -31,9 +29,9 @@ def compare(arr1,arr2)
   shellsort(arr1) == shellsort(arr2)
 end
 
-x = (1..1600).to_a.shuffle
-y = (1..1600).to_a.shuffle
+x = (1..2000).to_a.shuffle
+y = (1..2000).to_a.shuffle
 a = Time.now
-compare(x,y)
+p shellsort(x)
 b = Time.now
 p (b-a)*1000
