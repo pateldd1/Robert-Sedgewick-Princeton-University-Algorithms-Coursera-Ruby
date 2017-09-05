@@ -1,4 +1,4 @@
-#O(logn) method to find the nth_largest element using quicksort algorithm
+#O(n) method to find the nth_largest element using quickselection algorithm
 def quickselection(arr,nth_largest)
   arr.shuffle!
   n_index = arr.length - nth_largest
@@ -13,6 +13,7 @@ def quickselection(arr,nth_largest)
       while i < hi && arr[lo] > arr[i]
         i += 1
       end
+      # If arr[j] = arr[lo] it will stop there so no need to check if j < lo
       while arr[j] > arr[lo]
         j -= 1
       end

@@ -2,6 +2,9 @@
 # distinct 2D points in the plane, design a subquadratic algorithm to count the
 # number of points that are contained both in array 𝚊[] and array 𝚋[].
 
+# This would be done better by going through the first array and doing a binary search through the
+# second array for each particular value
+
 def td_shellsort(arr1,arr2)
   arr = arr1 + arr2
   h = 0

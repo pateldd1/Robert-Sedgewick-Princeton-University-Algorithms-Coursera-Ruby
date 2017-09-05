@@ -1,9 +1,8 @@
-def three_way_quicksort(arr)
-  if !arr[1]
+# Three way quicksort will stop when i and rt cross because at that point we have examined every item with the partitioning element
+def three_way_quicksort(arr, lo = 0, hi = arr.length - 1)
+  if hi <= lo
     return arr
   end
-  lo = 0
-  hi = arr.size - 1
   lt = lo
   rt = hi
   inx = lo + 1
@@ -21,7 +20,8 @@ def three_way_quicksort(arr)
         inx += 1
     end
   end
-  three_way_quicksort(arr[0...lt]) + arr[lt..rt] + three_way_quicksort(arr[rt+1..-1])
+  three_way_quicksort(arr, lo, lt - 1)
+  three_way_quicksort(arr, rt+1, hi)
 end
 
 p three_way_quicksort(((0..10).to_a*30).shuffle)
