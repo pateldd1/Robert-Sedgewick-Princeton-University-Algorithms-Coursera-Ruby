@@ -17,7 +17,7 @@ class BinarySearchTree
     @ordered_list = []
     @iterative = []
   end
-  
+
   def get_value(key)
     current = @root_node
     until !current
@@ -37,11 +37,11 @@ class BinarySearchTree
       self.insertion(x,val)
     end
   end
-  
+
   def insertion(key,val)
     @root_node = self.insert(key,val)
   end
-    
+
   def insert(key,val,node=@root_node)
     if !node
       node = Node.new(key,val,1)
@@ -57,7 +57,7 @@ class BinarySearchTree
     node.count = 1 + self.size(node.right) + self.size(node.left)
     return node
   end
-  
+
   def size(node)
     if !node
       return 0
@@ -65,14 +65,14 @@ class BinarySearchTree
       return node.count
     end
   end
-  
+
   def iterate(current=@root_node)
     return if !current
     iterate(current.left)
     @ordered_list << current.key
     iterate(current.right)
   end
-  
+
   def is_tree?(current=@root_node)
     return true if !current
     a = is_tree?(current.left)
@@ -87,7 +87,7 @@ class BinarySearchTree
   end
   #This traverses the tree in O(1) constant extra space but destroys the tree. Morris Traversal does not."
   def destructive_iteration
-      n = @root_node.dup
+    n = @root_node.dup
     while n
       nxt= n.left
       if nxt
@@ -105,7 +105,7 @@ class BinarySearchTree
     @ordered_list = []
   end
 
-  
+
   def iterative_iteration(current=@root_node)
     pointer = current
     stack = [pointer]
@@ -125,7 +125,7 @@ class BinarySearchTree
    end
   @iterative
   end
-  
+
   def max(current=@root_node)
     pointer = current
     while pointer.right
@@ -133,7 +133,7 @@ class BinarySearchTree
     end
     return pointer
   end
-  
+
   def min(current=@root_node)
     pointer = current
     while pointer.left
@@ -141,7 +141,7 @@ class BinarySearchTree
     end
     return pointer
   end
-  
+
   def floor(key)
     answer = find_floor(key)
     if !answer
@@ -150,7 +150,7 @@ class BinarySearchTree
       return answer.key
     end
   end
- #This floor method will search through and through, find a node and then that node will be returned up the whole stack. 
+ #This floor method will search through and through, find a node and then that node will be returned up the whole stack.
   def find_floor(key,current=@root_node)
     return nil if !current
     return current if key == current.key
@@ -162,7 +162,7 @@ class BinarySearchTree
       return current
     end
   end
-  
+
   def ceil(key)
     answer = find_ceil(key)
     if !answer
@@ -171,7 +171,7 @@ class BinarySearchTree
       return answer.key
     end
   end
- #This ceil method will search through and through, find a node and then that node will be returned up the whole stack. 
+ #This ceil method will search through and through, find a node and then that node will be returned up the whole stack.
   def find_ceil(key,current=@root_node)
     return nil if !current
     return current if key == current.key
@@ -183,32 +183,32 @@ class BinarySearchTree
       return current
     end
   end
-  
+
   def print_sorted_keys
     self.iterate
     @ordered_list
     @ordered_list = []
   end
-  
+
   def rank(key,current=@root_node)
-    return 0 if !current
+    return nil if !current
     return rank(key,current.left) if key < current.key
     return 1 + size(current.left) + rank(key,current.right) if key > current.key
     return size(current.left) if key == current.key
   end
-  
+
   def delete_min(current=@root_node)
     return current.right if !current.left
     current.left = delete_min(current.left)
     current.count = 1 + size(current.right) + size(current.left)
     return current
   end
-  
+
   def delete(key)
     @root_node = delete_key(key)
     return @root_node
   end
-  
+
   def delete_key(key,current=@root_node)
     return nil if !current
     if key < current.key

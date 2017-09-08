@@ -55,12 +55,12 @@ class Deque
    end
 
    def removefirst
-      item = @first.item
-     @first = @first.after
+    item = @first.item
+    @first = @first.after
     if @first == nil
       @last = nil
     end
-     return item
+    return item
    end
 
    def removelast
@@ -85,23 +85,23 @@ class Deque
     def readstring(string)
      string.each_char do |ch|
        if ch == "-"
-        if special_case? && is_empty?
-          raise "Can't do this operation on an empty list"
-        elsif special_case?
-          @first = nil
-          @last = nil
-          next
-        end
-        self.removelast
+          if special_case? && is_empty?
+            raise "Can't do this operation on an empty list"
+          elsif special_case?
+            @first = nil
+            @last = nil
+            next
+          end
+          self.removelast
        elsif ch == "|"
-        if special_case? && is_empty?
-          raise "Can't do this operation on an empty list"
-        elsif special_case?
-          @first = nil
-          @last = nil
-          next
-        end
-        self.removefirst
+          if special_case? && is_empty?
+            raise "Can't do this operation on an empty list"
+          elsif special_case?
+            @first = nil
+            @last = nil
+            next
+          end
+          self.removefirst
        else
         self.addlast(ch)
        end
@@ -112,7 +112,7 @@ class Deque
     else
       p nil
     end
-    end
+   end
 end
 
 class Node

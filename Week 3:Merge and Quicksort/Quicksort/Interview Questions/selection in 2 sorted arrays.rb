@@ -41,7 +41,6 @@ def find_kth(arr1,arr2,kth_largest)
   hi = i
   lo = k_index - lagstrand.length
   lo = 0 if lo < 0
-  answer = nil
   found = false
   while lo <= hi
     if !lagstrand[k_index-i] || lagstrand[k_index-i] > readstrand[i]

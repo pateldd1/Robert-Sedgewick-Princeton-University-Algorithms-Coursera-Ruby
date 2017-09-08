@@ -78,11 +78,11 @@ class BruteCollinearPoints
         aux << arr1.shift
       end
     end
-  aux
+    aux
   end
 
   def order_points
-    @points.map! {|p| Point.new(*p)}
+    @points.map! { |p| Point.new(*p) }
     self.sort(@points)
   end
 
@@ -103,8 +103,8 @@ class BruteCollinearPoints
         end
       end
     end
-  p lines
-  p lines.map {|line| [line[0],line[-1]].flatten(1)}
+    p lines
+    p lines.map {|line| [line[0],line[-1]].flatten(1)}
   end
 end
 

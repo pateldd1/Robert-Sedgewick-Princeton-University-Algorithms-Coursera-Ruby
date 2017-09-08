@@ -22,6 +22,11 @@
 #O(n^2logn) because for each point, you sort the other points by the slope
 # to that point.
 
+# this could be done in O(n^2) time using hashing, however
+
+# They are ordered in terms of distance from the origin first and then they are ordered in terms
+# of a slope to a certain point. Mergesort is used to allow for a stable sorting algorithm.
+
 class Point
   attr_accessor :x, :y, :pos
   def initialize(x,y)
@@ -102,7 +107,7 @@ class MergeSortCollinearPoints
         aux << arr1.shift
       end
     end
-  aux
+    aux
   end
 
   def order_points
@@ -125,6 +130,8 @@ class MergeSortCollinearPoints
     end
     half1 = slope_sort(current_point,arr[lo..mid])
     half2 = slope_sort(current_point,arr[mid+1..hi])
+    # If the half1[-1] is less than half2[0] they are both sorted already so just add
+    # the two arrays together and merging is unneeded. Microoptmization
     if current_point.slope_comparator(half1[-1],half2[0]) == -1
       return half1+half2
     else
@@ -149,7 +156,7 @@ class MergeSortCollinearPoints
         aux << arr1.shift
       end
     end
-  aux
+    aux
   end
 
   def find_collinears

@@ -56,6 +56,8 @@ class RandomizedQueue
     end
   end
 
+# It wasn't explicitly stated to do this in the instructions but this is the only way
+# The last item is switched with the random item that is deleted and this allows constant amortized ops.
   def pop
     if self.empty?
       raise "Can't do this op on an empty queue"
@@ -63,13 +65,8 @@ class RandomizedQueue
     @counter -= 1
     rand_delete_index = rand(0..@counter)
     item = @array[rand_delete_index]
-    @array[rand_delete_index] = nil
-    i = rand_delete_index
-    while @array[i+1]
-      @array[i] = @array[i+1]
-      @array[i+1] = nil
-      i += 1
-    end
+    @array[rand_delete_index] = @array[@counter]
+    @array[@counter] = nil
     if @counter > 0 && @counter == @capacity/4
       @capacity /= 2
       self.resize
@@ -97,89 +94,89 @@ class RandomizedQueue
   end
 end
 
-a = RandomizedQueue.new
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
-a.push(1)
-a.push(2)
-a.push(3)
-a.push(4)
+# a = RandomizedQueue.new
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
+# a.push(1)
+# a.push(2)
+# a.push(3)
+# a.push(4)
 # a.pop
 # a.pop
 # a.pop
@@ -196,7 +193,7 @@ a.push(4)
 # a.pop
 # a.push(5)
 # a.push(6)
-time = Time.now
-a.iterate
-endtime = Time.now
-p (endtime - time)*1000
+# time = Time.now
+# a.iterate
+# endtime = Time.now
+# p (endtime - time)*1000
