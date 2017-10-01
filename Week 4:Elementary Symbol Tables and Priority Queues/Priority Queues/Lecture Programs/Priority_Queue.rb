@@ -33,7 +33,7 @@ class PriorityQueue
         max_child = 2*j
       end
       if @elements[j] < @elements[max_child]
-          swap(j,max_child)
+        swap(j,max_child)
       else
         break
       end

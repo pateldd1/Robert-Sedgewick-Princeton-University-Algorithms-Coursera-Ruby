@@ -38,7 +38,7 @@ class LinearProbe
     @num_elements = 0
     @size = 1000000
   end
-  
+
   def resize
     i = -1
     key_array = @keys.dup
@@ -50,18 +50,18 @@ class LinearProbe
       key = key_array[i]
       next if !key
       inx = key.hashcode % @size
-      inx = ((inx + 1)%@size) until !@keys[inx]
+      inx = ((inx + 1) % @size) until !@keys[inx]
       @keys[inx] = key
       @vals[inx] = val_array[i]
     end
   end
-  
+
   def insert_array(arr,val)
     arr.each do |key|
       self[key] = val
     end
   end
-  
+
   def []=(key,val)
     if @size == 2*@num_elements
       @size *= 2
@@ -79,7 +79,7 @@ class LinearProbe
     @vals[i] = val
     @num_elements += 1
   end
-  
+
   def [](key)
     return nil if @num_elements == 0
     i = key.hashcode % @size

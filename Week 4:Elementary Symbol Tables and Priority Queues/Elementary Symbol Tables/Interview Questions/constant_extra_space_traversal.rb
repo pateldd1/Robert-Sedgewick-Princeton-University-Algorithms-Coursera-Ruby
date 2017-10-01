@@ -5,7 +5,7 @@
 # Add This to my Binary Search Tree Data Structure within lecture Programs
 
 def destructive_iteration
-    n = @root_node.dup
+  n = @root_node.dup
   while n
     nxt= n.left
     if nxt

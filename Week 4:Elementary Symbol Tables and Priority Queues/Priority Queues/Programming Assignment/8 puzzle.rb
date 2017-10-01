@@ -3,7 +3,7 @@
 # labeled 1 through 8 and a blank square. Your goal is to rearrange the blocks so
 # that they are in order, using as few moves as possible. You are permitted to
 # slide blocks horizontally or vertically into the blank square. The following
-# shows a sequence of legal moves from an initial board (left) to the goal board 
+# shows a sequence of legal moves from an initial board (left) to the goal board
 # (right).
 #
 #
@@ -160,10 +160,10 @@ class PuzzleSolver
       current.make_children
       new_cost = current.cost + 1
       current.children.each do |child|
-          child.parent = current
-          child.cost = new_cost
-          child.priority = -(new_cost + child.calculate_manhattan)
-          pq << child
+        child.parent = current
+        child.cost = new_cost
+        child.priority = -(new_cost + child.calculate_manhattan)
+        pq << child
       end
     end
     answer = []
@@ -180,9 +180,9 @@ class PuzzleSolver
     p "-------------------------------"
     answer.reverse.each do |board|
       board.each do |line|
-      p line.map {|element| !element ? 0 : element}
-    end
-    p "--------------------------------"
+        p line.map {|element| !element ? 0 : element}
+      end
+      p "--------------------------------"
     end
   end
 end

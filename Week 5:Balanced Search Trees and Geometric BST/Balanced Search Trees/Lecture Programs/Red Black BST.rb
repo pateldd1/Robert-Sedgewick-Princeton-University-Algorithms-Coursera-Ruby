@@ -18,7 +18,7 @@ class RBSearchTree
     @iterative = []
     @answer_keys = []
   end
-  
+
   def size(node)
     if !node
       return 0
@@ -26,29 +26,38 @@ class RBSearchTree
       return node.count
     end
   end
-  
+
   def is_red?(node)
     return false if !node
     return node.red
   end
-  
+
   def range_searcher(start,finish,current=@root_node)
     range_search(start,finish,current)
     p @answer_keys
   end
-  
-  def range_search(start,finish,current)
+
+  def range_search(start, finish, current)
     return if !current
-    if current.key >= start
-      range_search(start,finish,current.left)
-      return if current.key > finish
-      @answer_keys << current.key
-    end
-    if current.key <= finish
-      range_search(start,finish,current.right)
-    end
+    range_search(start, finish, current.left) if start <= current.key
+    @answer_keys << current.key if start <= current.key && current.key <= finish
+    range_search(start,finish, current.right) if current.key <= finish
   end
-  
+
+  # Not good
+
+  # def range_search(start,finish,current)
+  #   return if !current
+  #   if current.key >= start
+  #     range_search(start,finish,current.left)
+  #     return if current.key > finish
+  #     @answer_keys << current.key
+  #   end
+  #   if current.key <= finish
+  #     range_search(start,finish,current.right)
+  #   end
+  # end
+
   def [](index,current=@root_node)
     compare = size(current.left)
     loop do
@@ -66,11 +75,11 @@ class RBSearchTree
     end
     return nil
   end
-  
+
   def delete_nth(index)
     @root_node = nth_deletion(index)
   end
-  
+
   def nth_deletion(index,current=@root_node,compare=size(current.left))
     return nil if !current
     if index > compare
@@ -108,7 +117,7 @@ class RBSearchTree
     current.count = 1 + size(current.left) + size(current.right)
     return current
   end
-  
+
   def rotate_right(h)
     x = h.left
     h.count = 1 + size(h.right) + size(x.right)
@@ -118,7 +127,7 @@ class RBSearchTree
     h.red = true
     return x
   end
-  
+
   def rotate_left(h)
     x = h.right
     h.count = 1 + size(h.left) + size(x.left)
@@ -128,13 +137,13 @@ class RBSearchTree
     h.red = true
     return x
   end
-  
+
   def flip_colors(h)
     h.red = true
     h.left.red = false
     h.right.red = false
   end
-  
+
   def get_value(key)
     current = @root_node
     until !current
@@ -148,13 +157,13 @@ class RBSearchTree
     end
     return nil
   end
-  
+
   def insert_array(arr,val)
     arr.each do |x|
       self.insertion(x,val)
     end
   end
-  
+
   def push(key,val,h = @root_node)
     return Noder.new(key,val,true) if !h
     h.right = push(key,val,h.right)
@@ -164,17 +173,17 @@ class RBSearchTree
     h.count = 1 + size(h.right) + size(h.left)
     return h
   end
-  
+
   def push_values(*vals)
     vals.each do |val|
       @root_node = push(val,0)
     end
   end
-    
+
   def insertion(key,val)
     @root_node = self.insert(key,val)
   end
-  
+
   def insert(key,val,h=@root_node)
     if !h
       return Noder.new(key,val,true)
@@ -192,14 +201,14 @@ class RBSearchTree
     h.count = 1 + size(h.right) + size(h.left)
     return h
   end
-  
+
   def iterate(current=@root_node)
     return if !current
     iterate(current.left)
     @ordered_list << current.key
     iterate(current.right)
   end
-  
+
   def is_tree?(current=@root_node)
     return true if !current
     a = is_tree?(current.left)
@@ -249,14 +258,14 @@ class RBSearchTree
   end
   @iterative
   end
-  
+
   def rank(key,current=@root_node)
     return 0 if !current
     return rank(key,current.left) if key < current.key
     return 1 + size(current.left) + rank(key,current.right) if key > current.key
     return size(current.left) if key == current.key
   end
-  
+
   def max(current=@root_node)
     pointer = current
     while pointer.right
@@ -264,7 +273,7 @@ class RBSearchTree
     end
     return pointer
   end
-  
+
   def min(current=@root_node)
     pointer = current
     while pointer.left
@@ -272,7 +281,7 @@ class RBSearchTree
     end
     return pointer
   end
-  
+
   def tree_height_left(current=@root_node)
     pointer = current
     counter = -1
@@ -282,7 +291,7 @@ class RBSearchTree
     end
     return counter
   end
-  
+
   def tree_height_right(current=@root_node)
     pointer = current
     counter = 0
@@ -292,7 +301,7 @@ class RBSearchTree
     end
     return counter
   end
-  
+
   def floor(key)
     answer = find_floor(key)
     if !answer
@@ -301,7 +310,7 @@ class RBSearchTree
       return answer.key
     end
   end
-#This floor method will search through and through, find a node and then that node will be returned up the whole stack. 
+#This floor method will search through and through, find a node and then that node will be returned up the whole stack.
   def find_floor(key,current=@root_node)
     return nil if !current
     return current if key == current.key
@@ -313,7 +322,7 @@ class RBSearchTree
       return current
     end
   end
-  
+
   def ceil(key)
     answer = find_ceil(key)
     if !answer
@@ -322,7 +331,7 @@ class RBSearchTree
       return answer.key
     end
   end
-#This ceil method will search through and through, find a node and then that node will be returned up the whole stack. 
+#This ceil method will search through and through, find a node and then that node will be returned up the whole stack.
   def find_ceil(key,current=@root_node)
     return nil if !current
     return current if key == current.key
@@ -334,19 +343,19 @@ class RBSearchTree
       return current
     end
   end
-  
+
   def print_sorted_keys
     self.iterate
     p @ordered_list
     @ordered_list = []
   end
-  
+
   def shift(times = 1)
     times.times do
       @root_node = delete_min
     end
   end
-  
+
   def delete_min(current=@root_node)
     if !current.left
       current.right.red = current.red if current.right
@@ -356,12 +365,12 @@ class RBSearchTree
     current.count = 1 + size(current.right) + size(current.left)
     return current
   end
-  
+
   def delete(key)
     @root_node = delete_key(key)
     return @root_node
   end
-  
+
   def delete_key(key,current=@root_node)
     return nil if !current
     if key < current.key

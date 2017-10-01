@@ -5,6 +5,9 @@
 # How many times has a given user visited a given site?
 # What data structure or data structures would you use?
 
+# This is done in logn Time, but it is easier to use hashing in O(1) time
+# The only reason to use BST is if you needed a range of users in a particular order
+# with the sites they visited.
 class Internet
   attr_accessor :user_tree
   def initialize
@@ -147,3 +150,22 @@ end
 
 x = Internet.new
 x.usersvisit
+
+
+# This is done in O(1) time but we can't do range searches or sorted operations
+WEBSITES = {"a.com"=>0, "b.com"=>0, "c.com"=>0}
+USERS = Hash.new {|h,k| h[k] = WEBSITES.dup}
+def usersvisit
+  USERS["john"]["a.com"] += 1
+  USERS["joey"]["b.com"] += 2
+end
+
+def times_visited(user_name,site_name)
+  USERS[user_name][site_name]
+end
+
+usersvisit
+p times_visited("john","a.com")
+p times_visited("john","b.com")
+p times_visited("joey","a.com")
+p times_visited("joey","b.com")

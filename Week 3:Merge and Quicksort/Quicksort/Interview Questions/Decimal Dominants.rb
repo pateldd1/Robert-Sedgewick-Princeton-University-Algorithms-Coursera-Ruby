@@ -1,8 +1,9 @@
-# Decimal dominants. Given an array with n keys, design an algorithm to find all 
+# Decimal dominants. Given an array with n keys, design an algorithm to find all
 # values that occur more than n/10 times. The expected running time of your
 # algorithm should be linear.
 
 #3way quicksort in linear time to find elements repeated n/10 times.
+#A hash would be faster but it wasn't taught yet in the course
 def three_way_quicksort(arr,test_size=arr.size/10)
   p test_size
   if arr.size <= test_size

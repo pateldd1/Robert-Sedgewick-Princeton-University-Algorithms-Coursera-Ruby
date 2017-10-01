@@ -26,7 +26,7 @@ class IntersectionFind
     @y_tree = y_tree
     @sorted_points = []
   end
-  
+
   def insert_lines(*lines)
     lines.each do |line|
       x1 = line[0][0]
@@ -41,7 +41,7 @@ class IntersectionFind
     end
     @sorted_points.sort_by! {|pt| [pt.x,pt.y]}
   end
-  
+
   def sweep_line_algorithm
     vert_line = []
     ans = []
@@ -69,12 +69,12 @@ class RBSearchTree
     @answer_keys = []
     @ordered_list = []
   end
-  
+
   def is_red?(node)
     return false if !node
     return node.red
   end
-  
+
   def rotate_right(h)
     x = h.left
     h.left = x.right
@@ -83,7 +83,7 @@ class RBSearchTree
     h.red = true
     return x
   end
-  
+
   def rotate_left(h)
     x = h.right
     h.right = x.left
@@ -92,17 +92,17 @@ class RBSearchTree
     h.red = true
     return x
   end
-  
+
   def flip_colors(h)
     h.red = true
     h.left.red = false
     h.right.red = false
   end
-    
+
   def insertion_or_deletion(y)
     @root_node = self.insert_or_delete(y)
   end
-  
+
   def insert_or_delete(y,current=@root_node)
     if !current
       return Node.new(y,true)
@@ -137,16 +137,16 @@ class RBSearchTree
     flip_colors(current) if is_red?(current.left) && is_red?(current.right)
     return current
   end
-  
+
   def iterate(current=@root_node)
     return if !current
     iterate(current.left)
     @ordered_list << current.y
     iterate(current.right)
   end
-  
+
   #This traverses the tree in O(1) constant extra space but destroys the tree. Morris Traversal does not."
-  
+
   def min(current=@root_node)
     pointer = current
     while pointer.left
@@ -154,13 +154,13 @@ class RBSearchTree
     end
     return pointer
   end
-  
+
   def print_sorted
     self.iterate
     p @ordered_list
     @ordered_list = []
   end
-  
+
   def delete_min(current=@root_node)
     if !current.left
       current.right.red = current.red if current.right
@@ -169,28 +169,23 @@ class RBSearchTree
     current.left = delete_min(current.left)
     return current
   end
-  
+
   def range_searcher(start,finish,current=@root_node)
     range_search(start,finish,current)
   end
-  
-  def range_search(start,finish,current)
+
+  def range_search(start, finish, current)
     return if !current
-    if current.y >= start
-      range_search(start,finish,current.left)
-      return if current.y > finish
-      @answer_keys << current.y
-    end
-    if current.y <= finish
-      range_search(start,finish,current.right)
-    end
+    range_search(start, finish, current.left) if start <= current.y
+    @answer_keys << current.y if start <= current.y && current.y <= finish
+    range_search(start,finish, current.right) if current.y <= finish
   end
-  
+
   def delete(y)
     @root_node = delete_y(y)
     return @root_node
   end
-  
+
   def delete_y(y,current=@root_node)
     return nil if !current
     if y < current.y
@@ -221,8 +216,8 @@ class RBSearchTree
     return current
   end
 end
-    
-  
+
+
 a = IntersectionFind.new
 a.insert_lines([[3,20],[3,0]],[[1,12],[1,0]],[[0,10],[4,10]],[[4,1],[2,1]],[[0,12],[10,12]])
 p a.sweep_line_algorithm
