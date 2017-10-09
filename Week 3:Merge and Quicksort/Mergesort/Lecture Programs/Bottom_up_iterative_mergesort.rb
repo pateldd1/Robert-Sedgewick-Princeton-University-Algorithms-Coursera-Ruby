@@ -24,7 +24,7 @@ def bottom_up_mergesort(arr)
   end
   arr
 end
-    
+
 def merge(arr1,arr2)
   aux = []
   until arr1.empty? && arr2.empty?
@@ -46,5 +46,3 @@ def merge(arr1,arr2)
 end
 x = (1..1000).to_a.shuffle
 bottom_up_mergesort(x)
-
-
